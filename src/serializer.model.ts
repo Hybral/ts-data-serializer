@@ -1,5 +1,5 @@
-import {Serializable} from './data-mapper.interface';
-import {IMapper} from './data-mapper.interface';
+import {Serializable} from './serializer.interface';
+import {IMapper} from './serializer.interface';
 
 /**
  * A base class to every model that uses the mapper decorator.

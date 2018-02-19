@@ -1,4 +1,4 @@
-import {IMapper} from './data-mapper.interface';
+import {IMapper} from './serializer.interface';
 
 /**
  * A Mapper decorator used by a BaseMapper class.

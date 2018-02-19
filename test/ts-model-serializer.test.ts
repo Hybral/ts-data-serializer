@@ -1,4 +1,4 @@
-import DummyClass from "../src/ts-data-mapper"
+import DummyClass from "../src/serializer"
 
 /**
  * Dummy test
