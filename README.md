@@ -17,13 +17,13 @@ npm install -save modelserializer
 
 Extend every model class with the Serializer class:
 
-```bash
+```javascript
 export class Test extend Serializer
 ```
 
 ### Map a single property
 
- ```bash
+ ```javascript
  @Mapper('JSON value') property;
  ```
  
