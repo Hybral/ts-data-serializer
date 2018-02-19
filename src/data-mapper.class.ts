@@ -1,4 +1,4 @@
-import {Serializable} from '../models/serializable.interface';
+import {Serializable} from './data-mapper.interface';
 import {IMapper} from './data-mapper.interface';
 
 /**
@@ -8,27 +8,27 @@ import {IMapper} from './data-mapper.interface';
 
 export class BaseMapper<T> implements Serializable<T> {
   // Structure of JSON response
-  private _map: Map<string, IMapper>;
+  private _map: Map<string, IMapper> = new Map<string, IMapper>();
 
   // Getter of Map to create on demand
-  get map() {
+  get map(): Map<string, IMapper> {
     if (!this._map) { this._map = new Map<string, IMapper>(); }
     return this._map;
   }
 
   constructor() {}
 
-  add(key, value) {
+  add(key: string, value: IMapper): void {
     if (!this.has(key)) {
       this.map.set(key, value);
     }
   }
 
-  remove(key) {
+  remove(key: string): void {
     this.map.delete(key);
   }
 
-  has(key): boolean {
+  has(key: string): boolean {
     return this.map.has(key);
   }
 
@@ -37,11 +37,13 @@ export class BaseMapper<T> implements Serializable<T> {
   every matching value. A map has an object the
   value is passed to the parent.
   */
-  deserialize(input): any {
+  deserialize(input: any): any {
     this.map.forEach((map, key) => {
       if (typeof input[key] !== 'undefined') {
         if (map.value) {
-          if (!this[map.parent]) { this[map.parent] = {}; }
+          if (!this[map.parent]) { 
+            this[map.parent] = {};
+          }
 
           this[map.parent][<string>map.value] = input[key];
           return;
