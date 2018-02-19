@@ -6,7 +6,7 @@ import {IMapper} from './data-mapper.interface';
  * Handles the deserialize and structuring of the JSON response.
  */
 
-export class BaseMapper<T> implements Serializable<T> {
+export class Serializer<T> implements Serializable<T> {
   // Structure of JSON response
   private _map: Map<string, IMapper> = new Map<string, IMapper>();
 

@@ -1,11 +1,11 @@
 {
-  "name": "ts-data-mapper",
+  "name": "ts-model-serializer",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/ts-data-mapper.umd.js",
-  "module": "dist/ts-data-mapper.es5.js",
-  "typings": "dist/types/ts-data-mapper.d.ts",
+  "main": "dist/ts-model-serializer.umd.js",
+  "module": "dist/ts-model-serializer.es5.js",
+  "typings": "dist/types/ts-model-serializer.d.ts",
   "files": [
     "dist"
   ],
