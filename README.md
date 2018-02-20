@@ -9,19 +9,19 @@ A Model Deserializer for Typescript that maps up JSON response to a class model.
 ### Usage
 
 ```bash
-npm install -save modelserializer
+npm install -save ts-model-serializer
 ```
 
 Extend every model class with the Serializer class:
 
 ```javascript
-export class Test extend Serializer
+export class Test extend Serializer<Test>
 ```
 
 ### Map a single property
 
  ```javascript
- @Mapper('JSON value') property;
+ @Mapper('book') book: Book;
  ```
  
 ### Map an object
