@@ -12,11 +12,19 @@ export class Serializer<T> implements Serializable<T> {
 
   // Getter of Map to create on demand
   get map(): Map<string, IMapper> {
-    if (!this._map) { this._map = new Map<string, IMapper>(); }
+    this.init();
     return this._map;
   }
 
-  constructor() {}
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    if (!this._map) { 
+      this._map = new Map<string, IMapper>(); 
+    }
+  }
 
   add(key: string, value: IMapper): void {
     if (!this.has(key)) {
