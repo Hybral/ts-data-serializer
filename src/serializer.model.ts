@@ -8,7 +8,7 @@ import {IMapper} from './serializer.interface';
 
 export class Serializer<T> implements Serializable<T> {
   // Structure of JSON response
-  private _map: Map<string, IMapper> = new Map<string, IMapper>();
+  private _map: Map<string, IMapper>;
 
   // Getter of Map to create on demand
   get map(): Map<string, IMapper> {
