@@ -1,8 +1,8 @@
 {
   "name": "ts-model-serializer",
   "version": "0.0.5",
-  "description": "",
-  "keywords": [],
+  "description": "Mapping of JSON response to a custom model class",
+  "keywords": ["typescript", "json-response", "serializer", "model-serializer"],
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "files": [
