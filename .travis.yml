@@ -1,15 +1,15 @@
 language: node_js
 branches:
-	only: 
-		- master
-		- /^greenkeeper/.*$/
+ only: 
+   - master
+   - /^greenkeeper/.*$/
 cache:
-	yarn: true
-	directories:
-		- node_modules
+ yarn: true
+ directories:
+  - node_modules
 notifications:
-	email: false
+ email: false
 node_js:
-	- node
+ - node
 script:
-	- npm run test && npm run build
+ - npm run test && npm run build
