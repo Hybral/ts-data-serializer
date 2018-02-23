@@ -39,3 +39,11 @@ set title(book: Book) {
  this._title = book.title.toLowerCase();
 }
 ```
+
+### Run the Deserializer
+
+```javascript
+new Test().deserialize(input);
+```
+
+Where "input" is the JSON response and "Test" is your model.
