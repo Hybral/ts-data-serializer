@@ -18,6 +18,36 @@ Extend every model class with the Serializer class:
 export class Test extend Serializer<Test>
 ```
 
+### Debugging and handling of missing keys
+The serializer autodetects missing keys and stores them in "missingKeys".
+This can be used in your custom model to handle the missing keys accordingly.
+
+```javascript
+export class Test extend Serializer<Test> {
+	@Mapper('name') name: string;
+	constructor() {
+		super();
+	}
+
+	greet(): string {
+		if (this.missingKeys.includes('name')) {
+			return 'missing name :(';
+		}
+
+		return this.name;
+	}
+}
+```
+
+By using the "strict" flag, an error message will print if a key is missing.
+The "strict" flag can be set by adding "true" to the super call:
+
+```javascript
+constructor() {
+	super(true);
+}
+```
+
 ### Map a single property
 
  ```javascript

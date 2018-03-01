@@ -10,13 +10,20 @@ export class Serializer<T> implements Serializable<T> {
   // Structure of JSON response
   private _map: Map<string, IMapper>;
 
+  // Show missing key message
+  private _strict: boolean;
+
   // Getter of Map to create on demand
   get map(): Map<string, IMapper> {
     this.init();
     return this._map;
   }
 
-  constructor() {
+  // Array of missing keys
+  public missingKeys: Array<string> = [];
+
+  constructor(isStrict?: boolean) {
+    this._strict = isStrict;
     this.init();
   }
 
@@ -40,12 +47,22 @@ export class Serializer<T> implements Serializable<T> {
     return this.map.has(key);
   }
 
+  private errorhandler(key: string) {
+    if (this._strict) { this.errorMessage(key); }
+    this.missingKeys.push(key);
+  }
+
+  private errorMessage(key) {
+    console.error('(' + this.constructor.name +') deserialize: "' + key + '" cannot be found');
+  }
+
   /*
   Iterate through structure to find and add
   every matching value. A map has an object the
   value is passed to the parent.
   */
   deserialize(input: any): any {
+    this.missingKeys = [];
     this.map.forEach((map, key) => {
       if (typeof input[key] !== 'undefined') {
         if (map.value) {
@@ -59,6 +76,8 @@ export class Serializer<T> implements Serializable<T> {
 
         this[map.parent] = input[key];
         return;
+      } else {
+        this.errorhandler(key);
       }
     });
 
