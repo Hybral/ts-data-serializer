@@ -31,6 +31,6 @@ export function Mapper(mappedTarget: string | any): any {
       return;
     }
 
-    target.add(mappedTarget, <IMapper>{parent: propertyKey});
+    target.add(mappedTarget || propertyKey, <IMapper>{parent: propertyKey});
   };
 }

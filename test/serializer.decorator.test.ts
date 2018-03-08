@@ -7,6 +7,8 @@ class Test extends Serializer<Test> {
 	@Mapper('prop')
 	testProp: string;
 
+	@Mapper() name: string;
+
 	@Mapper({test1: 't1', test2: 't2'})
 	testObj: {test1: string, test2: string}
 
@@ -36,6 +38,16 @@ describe('Serializer Decorator', () => {
 		expect(Array.from(model.map.keys())).toEqual(expect.arrayContaining(['prop']));
 		expect(model.map.get('prop').parent).toBe('testProp');
 		expect(model.testProp).toBe('Test1');
+	});
+
+	it ('should map a property with empty target', () => {
+		const model = new Test().deserialize({name: 'name-test'});
+
+		expect(model.map).toBeDefined();
+		expect(model.map.size).not.toEqual(0);
+		expect(Array.from(model.map.keys())).toEqual(expect.arrayContaining(['name']));
+		expect(model.map.get('name').parent).toBe('name');
+		expect(model.name).toBe('name-test');
 	});
 
 	it ('should map an object', () => {
