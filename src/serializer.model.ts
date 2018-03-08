@@ -13,8 +13,14 @@ export class Serializer<T> implements Serializable<T> {
   // Show missing key message
   private _strict: boolean;
 
+  // Getter and setter of strict mode
+  get strict(): boolean { return this._strict; }
+  set strict(strict: boolean) {
+    this._strict = strict;
+  }
+
   // Getter of Map to create on demand
-  get map(): Map<string, IMapper> {
+  protected get map(): Map<string, IMapper> {
     this.init();
     return this._map;
   }
@@ -22,8 +28,7 @@ export class Serializer<T> implements Serializable<T> {
   // Array of missing keys
   public missingKeys: Array<string> = [];
 
-  constructor(isStrict?: boolean) {
-    this._strict = isStrict;
+  constructor() {
     this.init();
   }
 
@@ -33,13 +38,13 @@ export class Serializer<T> implements Serializable<T> {
     }
   }
 
-  add(key: string, value: IMapper): void {
+  private add(key: string, value: IMapper): void {
     if (!this.has(key)) {
       this.map.set(key, value);
     }
   }
 
-  remove(key: string): void {
+  private remove(key: string): void {
     this.map.delete(key);
   }
 
@@ -82,5 +87,16 @@ export class Serializer<T> implements Serializable<T> {
     });
 
     return this;
+  }
+}
+
+/**
+* A strict version of the serializer model to simplify handling
+*/
+
+export class StrictSerializer<T> extends Serializer<T> {
+  constructor() {
+    super();
+    this.strict = true;
   }
 }
