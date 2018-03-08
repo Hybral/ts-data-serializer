@@ -18,41 +18,16 @@ Extend every model class with the Serializer class:
 export class Test extend Serializer<Test>
 ```
 
-### Debugging and handling of missing keys
-The serializer autodetects missing keys and stores them in "missingKeys".  
-This can be used in your custom model to handle the missing keys accordingly.  
-
-```javascript
-export class Test extend Serializer<Test> {
-  @Mapper('name') name: string;
-  
-  constructor() {
-    super();
-  }
-
-  greet(): string {
-    if (this.missingKeys.includes('name')) {
-      return 'missing name :(';
-    }
-
-    return this.name;
-  }
-}
-```
-
-By using the "strict" flag, an error message will print if a key is missing.  
-The "strict" flag can be set by adding "true" to the super call:  
-
-```javascript
-constructor() {
-  super(true);
-}
-```
-
 ### Map a single property
 
  ```javascript
- @Mapper('book') book: Book;
+ @Mapper() book: Book;
+ ```
+
+or if the JSON response has a different name from the property name  
+
+ ```javascript
+ @Mapper('test-book') book: Book;
  ```
  
 ### Map an object
@@ -78,3 +53,40 @@ new Test().deserialize(input);
 ```
 
 Where "input" is the JSON response and "Test" is your model.
+
+### Debugging and handling of missing keys
+The serializer autodetects missing keys and stores them in "missingKeys".  
+This can be used in your custom model to handle the missing keys accordingly.  
+
+```javascript
+export class Test extend Serializer<Test> {
+  @Mapper('name') name: string;
+
+  greet(): string {
+    if (this.missingKeys.includes('name')) {
+      return 'missing name :(';
+    }
+
+    return this.name;
+  }
+}
+```
+
+By using the strict serializer, an error message will print if a key is missing.  
+The strict serializer can be used by adding the "StrictSerializer" mode instead of "Serializer":  
+
+```javascript
+export class Test extend StrictSerializer<Test>
+```
+
+A normal serializer can also be used as strict by setting the "strict" property  
+before deserializing:
+
+ ```javascript
+export Test extend Serializer<Test> {
+  constructor() {
+    super();
+    this.strict = true;
+  }
+}
+```
