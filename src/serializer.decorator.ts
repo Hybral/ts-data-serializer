@@ -21,7 +21,7 @@ import {IMapper} from './serializer.interface';
  * @param {string | any} mappedTarget Target JSON name
  * @returns {any} A decorator function
  */
-export function Mapper(mappedTarget: string | any): any {
+export function Mapper(mappedTarget?: string | any): any {
   return (target: any, propertyKey: string) => {
     if (mappedTarget instanceof Object) {
       Object.keys(mappedTarget).map(key => target.add(mappedTarget[key], <IMapper>{
