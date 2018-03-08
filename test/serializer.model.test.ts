@@ -1,12 +1,26 @@
-import {Serializer} from '../src/serializer.model';
+import {Serializer, StrictSerializer} from '../src/serializer.model';
 
 describe('Serializer Model', () => {
 	it ('should be a function', () => {
 		expect(typeof Serializer).toBe('function');
 	});
 
-	it ('should be able to strict a serializer', () => {
-		const model = new Serializer<any>(true);
+	it ('should be able to strict a normal serializer', () => {
+		const model = new Serializer<any>();
+		model.strict = true;
+		expect(model._strict).toBe(true);
+		expect(model.strict).toBe(true);
+	});
+
+	it ('should be able to unstrict a normal serializer', () => {
+		const model = new Serializer<any>();
+		model.strict = true;
+		expect(model._strict).toBe(true);
+		expect(model.strict).toBe(true);
+	});
+
+	it ('should be strict of using a strict serializer', () => {
+		const model = new StrictSerializer<any>();
 		expect(model._strict).toBe(true);
 	});
 
@@ -58,7 +72,7 @@ describe('Serializer Model', () => {
 			error: jest.fn();
 		};
 
-		const model = new Serializer<any>(true);
+		const model = new StrictSerializer<any>();
 		model.add('test', 'hello');
 		model.errorMessage();
 
