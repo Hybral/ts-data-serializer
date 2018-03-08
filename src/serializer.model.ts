@@ -28,14 +28,25 @@ export class Serializer<T> implements Serializable<T> {
   // Array of missing keys
   public missingKeys: Array<string> = [];
 
-  constructor() {
+  constructor(isStrict?: boolean) {
     this.init();
+
+    if (isStrict !== undefined) {
+      this.addStrict(isStrict);
+    }
   }
 
   init() {
     if (!this._map) { 
       this._map = new Map<string, IMapper>(); 
     }
+  }
+
+  /**
+  * @deprecated Will be removed in 1.3.0, please use StrictSerializer or set the strict flag
+  */
+  private addStrict(value: boolean) {
+    this._strict = value;
   }
 
   private add(key: string, value: IMapper): void {
