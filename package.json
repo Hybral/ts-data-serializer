@@ -1,26 +1,27 @@
 {
-  "name": "ts-model-serializer",
-  "version": "1.2.0",
+  "name": "ts-data-serializer",
+  "version": "0.0.0-development",
   "description": "Mapping of JSON response to a custom model class",
-  "keywords": ["typescript", "json-response", "serializer", "model-serializer"],
+  "keywords": [
+    "typescript",
+    "json-response",
+    "serializer",
+    "model-serializer"
+  ],
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hybral/ts-model-serializer.git"
+    "url": "https://github.com/Hybral/ts-data-serializer.git"
   },
   "bugs": {
-    "url": "https://github.com/Hybral/ts-model-serializer/issues"
+    "url": "https://github.com/Hybral/ts-data-serializer/issues"
   },
-  "homepage": "https://github.com/Hybral/ts-model-serializer#readme",
+  "homepage": "https://github.com/Hybral/ts-data-serializer#readme",
   "files": [
     "dist"
   ],
   "author": "Jonas <jonas.ostlund@outlook.com>",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
@@ -31,12 +32,14 @@
     "test": "jest",
     "test:prod": "npm run test -- --coverage --no-cache",
     "test:a": "istanbul cover _mocha --compilers ts:ts-node/register \"./test/**/*.spec.ts\" --report lcovonly -- -R spec",
-    "report": "cat ./coverage/lcov.info | coveralls"
+    "report": "cat ./coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release"
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
+    "testURL": "http://localhost/",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
@@ -61,6 +64,7 @@
     "@types/jest": "^22.1.3",
     "coveralls": "^3.0.0",
     "jest": "^22.4.0",
+    "semantic-release": "^15.13.24",
     "ts-jest": "^22.0.4",
     "ts-node": "^5.0.0",
     "typescript": "^2.6.2"
