@@ -1,5 +1,5 @@
 {
-  "name": "ts-model-serializer",
+  "name": "ts-data-serializer",
   "version": "0.0.0-development",
   "description": "Mapping of JSON response to a custom model class",
   "keywords": [
@@ -12,12 +12,12 @@
   "typings": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Hybral/ts-data-serializer.git"
   },
   "bugs": {
-    "url": "https://github.com/Hybral/ts-model-serializer/issues"
+    "url": "https://github.com/Hybral/ts-data-serializer/issues"
   },
-  "homepage": "https://github.com/Hybral/ts-model-serializer#readme",
+  "homepage": "https://github.com/Hybral/ts-data-serializer#readme",
   "files": [
     "dist"
   ],
