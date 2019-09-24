@@ -3,18 +3,14 @@ branches:
  only: 
    - master
    - /^greenkeeper/.*$/
-cache:
- yarn: true
- directories:
-  - node_modules
 notifications:
  email: false
 node_js:
  - 8
- - 6
 jobs:
  include:
-  - script: npm run test:prod
+  - stage: Test
+    script: npm run test:prod
   - stage: Build
     script: npm run build
   - stage: Release
