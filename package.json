@@ -1,6 +1,6 @@
 {
   "name": "ts-model-serializer",
-  "version": "1.2.0",
+  "version": "0.0.0-development",
   "description": "Mapping of JSON response to a custom model class",
   "keywords": [
     "typescript",
@@ -32,7 +32,8 @@
     "test": "jest",
     "test:prod": "npm run test -- --coverage --no-cache",
     "test:a": "istanbul cover _mocha --compilers ts:ts-node/register \"./test/**/*.spec.ts\" --report lcovonly -- -R spec",
-    "report": "cat ./coverage/lcov.info | coveralls"
+    "report": "cat ./coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release"
   },
   "jest": {
     "transform": {
