@@ -32,7 +32,7 @@ export class Serializer<T> implements Serializable<T> {
     this.init();
 
     if (isStrict !== undefined) {
-      this.addStrict(isStrict);
+      this.strict = isStrict;
     }
   }
 
@@ -40,13 +40,6 @@ export class Serializer<T> implements Serializable<T> {
     if (!this._map) { 
       this._map = new Map<string, IMapper>(); 
     }
-  }
-
-  /**
-  * @deprecated Will be removed in 1.3.0, please use StrictSerializer or set the strict flag
-  */
-  private addStrict(value: boolean) {
-    this._strict = value;
   }
 
   private add(key: string, value: IMapper): void {
