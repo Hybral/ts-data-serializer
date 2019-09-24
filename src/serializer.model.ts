@@ -72,6 +72,19 @@ export class Serializer<T> implements Serializable<T> {
     console.error('(' + this.constructor.name +') deserialize: "' + key + '" cannot be found');
   }
 
+  private _traverse(input: Object, key: string): any {
+    return key.split('.').reduce((a, b) => a ? a[b] : null, input);
+  }
+
+  private _stringToObject(key: string, value: any): Object {
+    let r = {};
+    key.split('.').reduce((a, b, i, arr) => {
+      return a[b] = a[b] || arr[i + 1] ? {} : value;
+    }, r);
+
+    return r;
+  }
+
   /*
   Iterate through structure to find and add
   every matching value. A map has an object the
@@ -80,17 +93,18 @@ export class Serializer<T> implements Serializable<T> {
   deserialize(input: any): any {
     this.missingKeys = [];
     this.map.forEach((map, key) => {
-      if (typeof input[key] !== 'undefined') {
+      const value = this._traverse(input, key);
+      if (typeof value !== 'undefined') {
         if (map.value) {
           if (!this[map.parent]) { 
             this[map.parent] = {};
           }
 
-          this[map.parent][<string>map.value] = input[key];
+          this[map.parent][<string>map.value] = value;
           return;
         }
 
-        this[map.parent] = input[key];
+        this[map.parent] = value;
         return;
       } else {
         this.errorhandler(key);
@@ -98,6 +112,20 @@ export class Serializer<T> implements Serializable<T> {
     });
 
     return this;
+  }
+
+
+  /*
+  Restructure the payload by iterating through
+  the mapper and building up the object as it was mapped
+  by the class.
+   */
+  serialize(): Object {
+    return Array.from(this.map).reduce((a, b) => {
+      return {...a, ...this._stringToObject(b[0], b[1].value
+            ? this[b[1].parent][<string>b[1].value]
+            : this[b[1].parent])};
+    }, {});
   }
 }
 
