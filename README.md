@@ -1,10 +1,10 @@
-# TypeScript Model Serializer
+# TypeScript Data Serializer
 
 [![Travis](https://travis-ci.com/Hybral/ts-data-serializer.svg?branch=master)](https://travis-ci.com/Hybral/ts-data-serializer)
 [![Coverage Status](https://coveralls.io/repos/github/Hybral/ts-model-serializer/badge.svg?branch=master)](https://coveralls.io/github/Hybral/ts-model-serializer?branch=master)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](paypal.me/hybral)
 
-A Model Deserializer for Typescript that maps up JSON response to a class model.
+A class Serializer for Typescript that maps up JSON response to a class.
 
 ### Usage
 
