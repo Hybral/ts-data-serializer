@@ -1,6 +1,6 @@
 {
   "name": "ts-data-serializer",
-  "version": "0.0.0-development",
+  "version": "1.3.0",
   "description": "Mapping of JSON response to a custom model class",
   "keywords": [
     "typescript",
