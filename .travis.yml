@@ -10,12 +10,20 @@ cache:
 notifications:
  email: false
 node_js:
- - node
+ - 8
+ - 6
 jobs:
  include:
   - script: npm run test:prod
   - stage: Build
     script: npm run build
+  - stage: Release
+    node_js: lts/*
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script:
+        - npx semantic-release
 after_success:
  - npm run report
  - npm run clean
