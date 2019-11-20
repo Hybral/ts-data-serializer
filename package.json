@@ -32,7 +32,7 @@
     "test": "jest",
     "test:prod": "npm run test -- --coverage --no-cache",
     "test:a": "istanbul cover _mocha --compilers ts:ts-node/register \"./test/**/*.spec.ts\" --report lcovonly -- -R spec",
-    "report": "cat ./coverage/lcov.info | coveralls",
+    "report": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "semantic-release": "semantic-release"
   },
   "jest": {
